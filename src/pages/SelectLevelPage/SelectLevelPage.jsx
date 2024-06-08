@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
 import styles from "./SelectLevelPage.module.css";
+import { useContext, useEffect } from "react";
+import { ModeContext } from "../../context/modeContext";
 
 export function SelectLevelPage() {
+  const { setMode } = useContext(ModeContext);
+
+  const checkbox = () => {
+    setMode(true);
+  };
+
+  useEffect(() => {
+    setMode(false);
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.modal}>
@@ -25,7 +37,7 @@ export function SelectLevelPage() {
         </ul>
         <div className={styles.wrap}>
           <h3 className={styles.subtitle}>Дополнительные попытки</h3>
-          <input type="checkbox" />
+          <input onClick={checkbox} type="checkbox" />
         </div>
       </div>
     </div>
