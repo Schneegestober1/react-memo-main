@@ -268,7 +268,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           <p style={{ color: "white" }}>У Вас осталось {lives} жизней</p>
         </div>
       )}
-
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal
