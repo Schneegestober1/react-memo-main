@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import styles from "./SelectLevelPage.module.css";
 import { useContext, useEffect } from "react";
-import { ModeContext } from "../../context/modeContext";
+import { LevelContext } from "../../context/levelContext";
+import { LivesContext } from "../../context/livesContext";
 
 export function SelectLevelPage() {
-  const { setMode } = useContext(ModeContext);
+  const { setLevel } = useContext(LevelContext);
+  const { setLives } = useContext(LivesContext);
 
-  const checkbox = () => {
-    setMode(true);
+  const livesChnageHandler = event => {
+    setLives(4 * event.target.checked - 1);
   };
 
   useEffect(() => {
-    setMode(false);
+    setLives(0);
   }, []);
 
   return (
@@ -19,17 +21,17 @@ export function SelectLevelPage() {
       <div className={styles.modal}>
         <h1 className={styles.title}>Выбери сложность</h1>
         <ul className={styles.levels}>
-          <li className={styles.level}>
+          <li onClick={() => setLevel(1)} className={styles.level}>
             <Link className={styles.levelLink} to="/game/3">
               1
             </Link>
           </li>
-          <li className={styles.level}>
+          <li onClick={() => setLevel(2)} className={styles.level}>
             <Link className={styles.levelLink} to="/game/6">
               2
             </Link>
           </li>
-          <li className={styles.level}>
+          <li onClick={() => setLevel(3)} className={styles.level}>
             <Link className={styles.levelLink} to="/game/9">
               3
             </Link>
@@ -37,7 +39,7 @@ export function SelectLevelPage() {
         </ul>
         <div className={styles.wrap}>
           <h3 className={styles.subtitle}>Дополнительные попытки</h3>
-          <input onClick={checkbox} type="checkbox" />
+          <input onClick={livesChnageHandler} type="checkbox" />
         </div>
       </div>
     </div>
