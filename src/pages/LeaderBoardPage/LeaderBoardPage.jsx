@@ -10,6 +10,12 @@ import { LeadersContext } from "../../context/leaderBoardContex";
 export const LeaderBoardPage = () => {
   const { leaders, setLeaders } = useContext(LeadersContext);
 
+  const formatTime = resultTime => {
+    const seconds = resultTime % 60;
+    const minutes = Math.floor(resultTime / 60);
+    return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
   useEffect(() => {
     getLeaders().then(leaders => {
       const sortedLeaders = sortLeadersEl(leaders.leaders);
@@ -21,7 +27,7 @@ export const LeaderBoardPage = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <h3 className={styles.title}>Лидерборд</h3>
-        <Link>
+        <Link to={"/"}>
           <Button>Начать игру</Button>
         </Link>
       </header>
@@ -29,12 +35,11 @@ export const LeaderBoardPage = () => {
         <div className={styles.box}>
           <p className={styles.sub1}>Позиция</p>
           <p className={styles.sub2}>Пользователь</p>
-          <p className={styles.sub3}></p>
           <p className={styles.sub4}>Время</p>
         </div>
         <ul className={styles.wrap}>
           {leaders.map((el, index) => (
-            <Leaderboard />
+            <Leaderboard key={el.id} position={`#${index + 1}`} user={el.name} time={formatTime(el.time)} />
           ))}
         </ul>
       </main>
