@@ -110,10 +110,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     // Победа - все карты на поле открыты
     if (isPlayerWon) {
-      if (lives !== -1 && lives !== 3) {
-        setLives(3);
-      }
-
+      // if (lives !== -1 && lives !== 3) {
+      //   setLives();
+      // }
       finishGame(STATUS_WON);
       return;
     }
@@ -159,7 +158,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       if (lives !== -1) {
         setLives(3);
       }
-
       finishGame(STATUS_LOST);
       return;
     }
@@ -263,9 +261,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           />
         ))}
       </div>
-      {lives !== -1 && (
+      {[3, 2, 1].includes(lives) && (
         <div>
-          <p style={{ color: "white" }}>У Вас осталось {lives} жизней</p>
+          <p style={{ color: "white" }}>У Вас осталось {lives} жизнь/и</p>
         </div>
       )}
       {isGameEnded ? (
