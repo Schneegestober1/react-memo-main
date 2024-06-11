@@ -10,7 +10,6 @@ export function SelectLevelPage() {
 
   const livesChnageHandler = event => {
     setLives(4 * event.target.checked - 1);
-    console.log(4 * event.target.checked - 1);
   };
 
   return (

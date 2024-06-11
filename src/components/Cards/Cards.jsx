@@ -113,7 +113,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     if (isPlayerWon) {
       if (lives !== -1 && lives !== 3) {
         setLives(3);
-        console.log("Мы установили 3 после выйгрыша");
       }
       finishGame(STATUS_WON);
       return;
@@ -159,7 +158,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
       if (lives !== -1) {
         setLives(3);
-        console.log("Мы установили 3 после проигрыша");
       }
 
       finishGame(STATUS_LOST);
