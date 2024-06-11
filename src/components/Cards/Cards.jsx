@@ -6,6 +6,7 @@ import { EndGameModal } from "../../components/EndGameModal/EndGameModal";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
 import { LivesContext } from "../../context/livesContext";
+import { calcUnits } from "../../utils/helpers";
 
 // Игра закончилась
 const STATUS_LOST = "STATUS_LOST";
@@ -110,9 +111,10 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
     // Победа - все карты на поле открыты
     if (isPlayerWon) {
-      // if (lives !== -1 && lives !== 3) {
-      //   setLives();
-      // }
+      if (lives !== -1 && lives !== 3) {
+        setLives(3);
+        console.log("Мы установили 3 после выйгрыша");
+      }
       finishGame(STATUS_WON);
       return;
     }
@@ -157,7 +159,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
       if (lives !== -1) {
         setLives(3);
+        console.log("Мы установили 3 после проигрыша");
       }
+
       finishGame(STATUS_LOST);
       return;
     }
@@ -261,9 +265,11 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           />
         ))}
       </div>
-      {[3, 2, 1].includes(lives) && (
+      {lives !== -1 && (
         <div>
-          <p style={{ color: "white" }}>У Вас осталось {lives} жизнь/и</p>
+          <p style={{ color: "white" }}>
+            У Вас осталось {lives} {calcUnits(lives, "жизней", "жизнь", "жизни")}
+          </p>
         </div>
       )}
       {isGameEnded ? (

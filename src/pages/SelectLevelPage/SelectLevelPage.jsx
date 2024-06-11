@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./SelectLevelPage.module.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { LevelContext } from "../../context/levelContext";
 import { LivesContext } from "../../context/livesContext";
 
@@ -10,11 +10,8 @@ export function SelectLevelPage() {
 
   const livesChnageHandler = event => {
     setLives(4 * event.target.checked - 1);
+    console.log(4 * event.target.checked - 1);
   };
-
-  useEffect(() => {
-    setLives(0);
-  }, []);
 
   return (
     <div className={styles.container}>
