@@ -40,7 +40,7 @@ export function SelectLevelPage() {
           {/* <input onClick={livesChnageHandler} type="checkbox" id="checkbox" className="checkbox" />
           <label htmlFor="checkbox" className="checkbox-label"></label> */}
           <CustomCheckbox onClick={livesChnageHandler} checked={isChecked} onChange={setIsChecked} />
-          <h3 className={styles.subtitle}> Упрощенный режим (3 жизни)</h3>
+          <h3 className={styles.subtitle}> Легкий режим (3 жизни)</h3>
         </div>
         <Link to={"/leaderboard"} className={styles.link}>
           Перейти к лидерборду
