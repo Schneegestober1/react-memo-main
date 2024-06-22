@@ -1,6 +1,16 @@
 .modal {
   width: 480px;
-  height: 459px;
+  border-radius: 12px;
+  background: #c2f5ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modLeaders {
+  width: 480px;
+  height: 634px;
   border-radius: 12px;
   background: #c2f5ff;
   display: flex;
@@ -13,24 +23,49 @@
   width: 96px;
   height: 96px;
   margin-bottom: 8px;
+  margin-top: 20px;
 }
 
 .title {
   color: #004980;
   font-variant-numeric: lining-nums proportional-nums;
-  font-family: StratosSkyeng;
+  font-family: Roboto;
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
   line-height: 48px;
-
+  text-align: center;
   margin-bottom: 28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 276px;
+  height: 45px;
+  top: 334px;
+  left: 374px;
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: center;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
 }
 
 .description {
   color: #000;
   font-variant-numeric: lining-nums proportional-nums;
-  font-family: StratosSkyeng;
+  font-family: Roboto;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
@@ -41,11 +76,12 @@
 
 .time {
   color: #000;
-  font-family: StratosSkyeng;
+  font-family: Roboto;
   font-size: 64px;
   font-style: normal;
   font-weight: 400;
   line-height: 72px;
+
   margin-bottom: 40px;
 }
 
@@ -56,6 +92,6 @@
   line-height: 32px;
   text-align: left;
   color: #565eef;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
