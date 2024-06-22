@@ -9,6 +9,10 @@ export const router = createBrowserRouter(
       path: "/",
       element: <SelectLevelPage />,
     },
+    // {
+    //   path: "/game",
+    //   element: <GamePage />,
+    // },
     {
       path: "/game/:pairsCount",
       element: <GamePage />,

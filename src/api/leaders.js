@@ -14,10 +14,10 @@ export const getLeaders = () => {
   });
 };
 
-export const postLeaders = ({}) => {
+export const postLeaders = ({ resultLeaderboard }) => {
   return fetch(topLeaderUrl, {
     method: "POST",
-    body: JSON.stringify(),
+    body: JSON.stringify(resultLeaderboard),
   }).then(response => {
     if (!response.ok) {
       throw new Error("Что-то пошло не так");
