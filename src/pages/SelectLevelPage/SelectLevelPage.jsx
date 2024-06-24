@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./SelectLevelPage.module.css";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { LevelContext } from "../../context/levelContext";
 import { LivesContext } from "../../context/livesContext";
 
@@ -11,10 +11,6 @@ export function SelectLevelPage() {
   const livesChnageHandler = event => {
     setLives(4 * event.target.checked - 1);
   };
-
-  useEffect(() => {
-    setLives(0);
-  }, []);
 
   return (
     <div className={styles.container}>
@@ -38,9 +34,12 @@ export function SelectLevelPage() {
           </li>
         </ul>
         <div className={styles.wrap}>
-          <h3 className={styles.subtitle}>Дополнительные попытки</h3>
+          <h3 className={styles.subtitle}>Упрощенный режим (3 жизни)</h3>
           <input onClick={livesChnageHandler} type="checkbox" />
         </div>
+        <Link to={"/leaderboard"} className={styles.link}>
+          Перейти к лидерборду
+        </Link>
       </div>
     </div>
   );

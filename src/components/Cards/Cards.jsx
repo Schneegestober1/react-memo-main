@@ -6,6 +6,7 @@ import { EndGameModal } from "../../components/EndGameModal/EndGameModal";
 import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
 import { LivesContext } from "../../context/livesContext";
+import { calcUnits } from "../../utils/helpers";
 
 // Игра закончилась
 const STATUS_LOST = "STATUS_LOST";
@@ -113,7 +114,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       if (lives !== -1 && lives !== 3) {
         setLives(3);
       }
-
       finishGame(STATUS_WON);
       return;
     }
@@ -265,10 +265,11 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       </div>
       {lives !== -1 && (
         <div>
-          <p style={{ color: "white" }}>У Вас осталось {lives} жизней</p>
+          <p style={{ color: "white" }}>
+            У Вас осталось {lives} {calcUnits(lives, "жизней", "жизнь", "жизни")}
+          </p>
         </div>
       )}
-
       {isGameEnded ? (
         <div className={styles.modalContainer}>
           <EndGameModal
