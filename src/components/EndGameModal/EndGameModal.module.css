@@ -95,3 +95,9 @@
   padding-top: 20px;
   padding-bottom: 40px;
 }
+
+.errorMsg {
+  font-family: Roboto;
+  font-size: 18px;
+  color: red;
+}

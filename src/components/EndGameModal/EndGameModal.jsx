@@ -76,7 +76,7 @@ export function EndGameModal({
               onClick={e => {
                 e.preventDefault();
                 if (!inputLeaders.trim()) {
-                  return;
+                  return setError("Заполните поле ввода");
                 }
                 onLeaders();
                 setInputLeaders("");
@@ -101,7 +101,7 @@ export function EndGameModal({
       <Link className={styles.link} to={"/leaderboard"}>
         Перейти к лидерборду
       </Link>
-      {error && error}
+      <p className={styles.errorMsg}>{error && error}</p>
     </div>
   );
 }
