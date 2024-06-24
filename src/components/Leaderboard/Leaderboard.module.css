@@ -1,6 +1,6 @@
 .position {
   width: 178px;
-  font-family: Poppins;
+  font-family: inherit;
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
@@ -9,7 +9,7 @@
 
 .user {
   width: 300px;
-  font-family: Poppins;
+  font-family: inherit;
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
@@ -18,7 +18,7 @@
 
 .time {
   width: 130px;
-  font-family: Poppins;
+  font-family: inherit;
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
