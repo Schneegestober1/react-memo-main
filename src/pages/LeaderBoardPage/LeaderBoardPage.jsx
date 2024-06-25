@@ -35,6 +35,7 @@ export const LeaderBoardPage = () => {
         <div className={styles.box}>
           <p className={styles.sub1}>Позиция</p>
           <p className={styles.sub2}>Пользователь</p>
+          <p className={styles.sub2}>Достижения</p>
           <p className={styles.sub4}>Время</p>
         </div>
         <ul className={styles.wrap}>
