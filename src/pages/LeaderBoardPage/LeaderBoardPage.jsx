@@ -39,7 +39,13 @@ export const LeaderBoardPage = () => {
         </div>
         <ul className={styles.wrap}>
           {leaders.map((el, index) => (
-            <Leaderboard key={el.id} position={`#${index + 1}`} user={el.name} time={formatTime(el.time)} />
+            <Leaderboard
+              key={el.id}
+              position={`#${index + 1}`}
+              user={el.name}
+              time={formatTime(el.time)}
+              achievements={el.achievements}
+            />
           ))}
         </ul>
       </main>

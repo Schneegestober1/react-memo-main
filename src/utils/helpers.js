@@ -11,3 +11,5 @@ export function calcUnits(value, unit0, unit1, unit2) {
   else if (reminder >= 2 && reminder <= 4) return unit2;
   else return unit0;
 }
+
+export const getTimeInSeconds = timer => timer.seconds + timer.minutes * 60;
