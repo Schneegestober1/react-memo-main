@@ -7,7 +7,7 @@ import { Button } from "../../components/Button/Button";
 import { Card } from "../../components/Card/Card";
 import { LivesContext } from "../../context/livesContext";
 import { calcUnits } from "../../utils/helpers";
-import alahamoraImg from "./img/alohomora.png";
+import alohomoraImg from "./img/alohomora.png";
 
 // Игра закончилась
 const STATUS_LOST = "STATUS_LOST";
@@ -57,6 +57,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   // Дата конца игры
   const [gameEndDate, setGameEndDate] = useState(null);
 
+  // Достижения
+  const [achievements, setAchievements] = useState(null);
+
   // Стейт для таймера, высчитывается в setInteval на основе gameStartDate и gameEndDate
   const [timer, setTimer] = useState({
     seconds: 0,
@@ -66,6 +69,17 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
   function finishGame(status = STATUS_LOST) {
     setGameEndDate(new Date());
     setStatus(status);
+
+    const achievements = [];
+
+    if (lives === -1) {
+      achievements.push(1);
+    }
+    if (!isAlohomoraTurnedOn) {
+      achievements.push(2);
+    }
+
+    setAchievements(achievements);
   }
   function startGame() {
     const startDate = new Date();
@@ -79,6 +93,8 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     setGameEndDate(null);
     setTimer(getTimerValue(null, null));
     setStatus(STATUS_PREVIEW);
+    setIsAlohomoraTurnedOn(false);
+    setIsAlohomoraDisabled(false);
   }
 
   /**
@@ -189,8 +205,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     // ... игра продолжается
   };
 
-  const isGameEnded = status === STATUS_LOST || status === STATUS_WON;
-
   // Игровой цикл
   useEffect(() => {
     // В статусах кроме превью доп логики не требуется
@@ -219,6 +233,9 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
 
   // Обновляем значение таймера в интервале
   useEffect(() => {
+    if (gameEndDate) {
+      return;
+    }
     const intervalId = setInterval(() => {
       setTimer(getTimerValue(gameStartDate, gameEndDate));
     }, 300);
@@ -227,10 +244,15 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
     };
   }, [gameStartDate, gameEndDate]);
 
-  const [isActivAlohomora, setIsActivAlohomora] = useState(false);
+  const [isAlohomoraDisabled, setIsAlohomoraDisabled] = useState(false);
+  const [isAlohomoraTurnedOn, setIsAlohomoraTurnedOn] = useState(false);
 
   const onAlohomora = () => {
-    setIsActivAlohomora(true);
+    if (isAlohomoraDisabled) {
+      return;
+    }
+    setIsAlohomoraDisabled(true);
+    setIsAlohomoraTurnedOn(true);
     const firstCard = cards.find(card => card.open === false);
     const newCards = cards.map(card => {
       return card.suit === firstCard.suit && card.rank === firstCard.rank ? { ...card, open: true } : card;
@@ -241,15 +263,6 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
       finishGame(STATUS_WON);
     }
   };
-
-  const achievements = [];
-
-  if (!lives === 3) {
-    achievements.push(1);
-  }
-  if (!isActivAlohomora) {
-    achievements.push(2);
-  }
 
   return (
     <div className={styles.container}>
@@ -281,17 +294,17 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
             <div className={styles.wrapper}>
               <img
                 onClick={onAlohomora}
-                className={isActivAlohomora ? styles.disabledEpiphany : styles.superPowerImg}
-                src={alahamoraImg}
+                className={isAlohomoraDisabled ? styles.disabledEpiphany : styles.superPowerImg}
+                src={alohomoraImg}
                 alt=""
               />
-              <div className={styles.layout}></div>
+              <div className={styles.layout} />
               <div className={styles.bubble}>
                 <h4 className={styles.title}>Алохомора</h4>
                 <p className={styles.description}>Открывается случайная пара карт.</p>
               </div>
             </div>
-            <div className={styles.layout}></div>
+            <div className={styles.layout} />
           </div>
         )}
 
@@ -316,7 +329,7 @@ export function Cards({ pairsCount = 3, previewSeconds = 5 }) {
           </p>
         </div>
       )}
-      {isGameEnded ? (
+      {gameEndDate ? (
         <div className={styles.modalContainer}>
           <EndGameModal
             isWon={status === STATUS_WON}

@@ -9,6 +9,7 @@ import superPowersImg from "./images/super-powers.png";
 export const Leaderboard = ({ position, user, time, achievements }) => {
   const achivImg1 = achievements.includes(1) ? vectorActiveImg : vectorNotActiveImg;
   const achivImg2 = achievements.includes(2) ? magicBallActiveImg : magicBallNotActiveImg;
+  console.log(user);
   return (
     <div>
       <li className={styles.item}>

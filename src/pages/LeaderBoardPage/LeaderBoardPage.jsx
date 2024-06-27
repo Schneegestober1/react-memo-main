@@ -17,9 +17,9 @@ export const LeaderBoardPage = () => {
   };
 
   useEffect(() => {
-    getLeaders().then(leaders => {
-      const sortedLeaders = sortLeadersEl(leaders.leaders);
-      setLeaders(sortedLeaders.splice(1, 10));
+    getLeaders().then(data => {
+      const sortedLeaders = sortLeadersEl(data.leaders);
+      setLeaders(sortedLeaders.slice(0, 9));
     });
   }, []);
 
@@ -45,7 +45,7 @@ export const LeaderBoardPage = () => {
               position={`#${index + 1}`}
               user={el.name}
               time={formatTime(el.time)}
-              achievements={el.achievements}
+              achievements={el.achievements || []}
             />
           ))}
         </ul>

@@ -1,6 +1,6 @@
 .container {
-  padding-left: calc(50% - 472px);
-  padding-right: calc(50% - 472px);
+  /* !!! */
+  padding-inline: max(50% - 472px, 16px);
 }
 
 .header {
@@ -44,12 +44,19 @@
 }
 
 .sub2 {
-  width: 227px;
   font-family: StratosSkyeng;
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
   color: #999999;
+
+  &:nth-child(2) {
+    width: 227px;
+  }
+
+  &:nth-child(3) {
+    width: 194px;
+  }
 }
 
 .sub3 {
@@ -68,5 +75,4 @@
   font-weight: 400;
   line-height: 32px;
   color: #999999;
-  margin-right: 20px;
 }
