@@ -91,3 +91,17 @@
   line-height: 24px;
   margin-top: 18px;
 }
+
+.checkbox {
+  display: block;
+  width: 30px;
+  height: 29px;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #7ac100;
+  cursor: pointer;
+  text-align: center;
+  font-size: 20px;
+  font-family: Roboto;
+  rotate: 0deg;
+}
