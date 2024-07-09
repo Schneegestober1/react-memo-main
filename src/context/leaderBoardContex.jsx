@@ -8,10 +8,9 @@ export const LeadersProvider = ({ children }) => {
   const [leaders, setLeaders] = useState([]);
 
   useEffect(() => {
-    getLeaders().then(leaders => {
-      const sortedLeaders = sortLeadersEl(leaders.leaders);
-      setLeaders(sortedLeaders.splice(1, 10));
-      console.log(leaders.leaders);
+    getLeaders().then(data => {
+      const sortedLeaders = sortLeadersEl(data.leaders);
+      setLeaders(sortedLeaders.slice(0, 9));
     });
   }, []);
 
